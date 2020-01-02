@@ -1,0 +1,32 @@
+configuration {
+    theme:                          "config";
+    window-format:                  "{t}";
+    show-icons:                     true;
+    font:                           "FiraCode 13";
+    columns:                        4;
+	fixed-num-lines: true;
+}
+
+window {
+    height:                         500; // 1440 - 2*16
+    width:                          480px;
+    location:                       northwest;
+    anchor:                         northwest;
+    x-offset:                       0;
+    y-offset:                       20;
+	border-radius:					15;
+}
+
+mainbox {
+    border:                         4px;
+    border-color:                   @primary;
+    padding:                        24px;
+}
+
+element-icon {
+    size: 32; /* Must be a power of 2 */
+}
+
+element-text {
+    vertical-align: 0.5;
+}

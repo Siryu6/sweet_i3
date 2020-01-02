@@ -1,0 +1,44 @@
+configuration {
+    theme:             "config";
+    show-icons:        true;
+    font:              "FiraCode 13";
+}
+
+* {
+	text-color: white;
+}
+
+window {
+	height:			50%;
+	width:			30%;
+	location: 		center;
+	anchor:			center;
+	y-offset:		50px;
+	x-offset:		50px;
+	border-radius:	20;
+}
+
+mainbox {
+	padding:		0px 0px;
+
+}
+
+element {
+	orientation:   	horizontal;
+}
+
+entry {
+	margin:			0px 0px;
+}
+
+
+element-icon {
+    size:              128; /* Must be a power of 2 */
+    border:            0px;
+}
+
+element-text {
+    expand:            true;
+    horizontal-align:  0.5;
+    vertical-align:  0.5;
+}
