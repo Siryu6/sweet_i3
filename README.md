@@ -6,6 +6,8 @@ It use light DM as display manager
 I may have bind some DE and keyboard binding with programs that you don't use.
 In ~/.config/i3/config just edit the "Custom binding conf"
 
+I also Handle USB-c dock for my own needs. Check the polybar launching script of you want to use it. 
+
 NB: this script is made for an Arch linux using pikaur as package manager.
 
 ## Screenshot
@@ -16,7 +18,7 @@ NB: this script is made for an Arch linux using pikaur as package manager.
 
 First you'll have to clone the Repo
 ```bash
-git clone {git repo}
+git clone https://github.com/Siryu6/sweet_i3
 ```
 
 ## Install for the first time (with dependencies)
