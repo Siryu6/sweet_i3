@@ -39,7 +39,7 @@ git pull
 
 ## Update git local folder with your actual configuration
 
-This script was intended for personnal usage, as I have to maintain may git, but it can be usefull if you want to upload and upgrade this conf on your git.
+This script was intended for personnal usage, as I have to maintain my git, but it can be usefull if you want to upload and upgrade this conf on your own git.
 
 ```bash
 cd i3conf
