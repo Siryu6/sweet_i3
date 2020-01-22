@@ -27,7 +27,7 @@ cp -f conf/settings.ini "$HOME"/.config/gtk-3.0/settings.ini
 
 # Background
 sudo cp images/wp-black.jpg /usr/share/backgrounds/
-nitrogen --set-centred /usr/share/backgrounds/wp-black.jpg
+nitrogen --set-centered /usr/share/backgrounds/wp-black.jpg
 
 
 ## TODO
