@@ -1,6 +1,6 @@
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
+background = #2F343F
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -19,7 +19,7 @@ width = 100%
 height = 27
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 6.0
+radius = 0
 fixed-center = false
 bottom = true
 
@@ -29,13 +29,13 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
+border-size = 0
 border-color = #00000000
 
-padding-left = 0
+padding-left = 2
 padding-right = 2
 
-module-margin-left = 1
+module-margin-left = 2
 module-margin-right = 2
 
 font-0 = NotoSans:pixelsize=10;1
@@ -45,14 +45,12 @@ font-3 = Font Awesome 5 Brands:style=Regular:size=10;4
 
 modules-left = cpu memory taskmgr
 modules-center = 
-modules-right = xbacklight battery date 
+modules-right = xbacklight pulseaudio battery date
 
 tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
-;wm-restack = i3
 
 ;override-redirect = true
 
@@ -75,7 +73,7 @@ width = 100%
 height = 27
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 6.0
+radius = 0
 fixed-center = false
 enable-ipc = true
 
@@ -86,7 +84,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
@@ -192,14 +190,13 @@ ws-icon-default = 
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
 label = %percentage_used%%
 label-active-font = 3
 
@@ -211,33 +208,72 @@ type = internal/battery
 full-at = 99
 
 ; $ ls -1 /sys/class/power_supply/
-battery = BAT1
-adapter = ACAD
+battery = BAT0
+adapter = AC
 
 poll-interval = 2
 time-format = %H:%M
 
-
+; Available tags:
+;   <label-charging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-charging>
+format-charging = <animation-charging> <label-charging>
+;format-charging-background = 
+;format-charging-padding = 
+;;format-charging-prefix = 
+; Available tags:
+;   <label-discharging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-discharging>
 format-discharging = <ramp-capacity>  <label-discharging>
+;format-discharging-background = ${color.mb}
+;format-discharging-padding = ${layout.module-padding}
+
+; Available tags:
+;   <label-full> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
 format-full = <ramp-capacity> <label-full>
+
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+
 label-charging = %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
 label-discharging = %percentage%%
 
-
+; Available tokens:
+;   %percentage% (default)
 label-full = 
+;label-full-background = ${color.mb}
+;label-full-padding = ${layout.module-padding}
 
-
+; Only applies if <ramp-capacity> is used
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 
+; Only applies if <bar-capacity> is used
+;bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
+; Framerate in milliseconds
 animation-charging-framerate = 750
 
 
@@ -252,7 +288,6 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
 
 
 label = %date% %time%
@@ -270,46 +305,41 @@ click-left = xfce4-taskmanager
 
 [module/editconf]
 type = custom/script
-exec = echo ""
+exec = echo ""
 click-left = code $HOME/.config/i3/config && code $HOME/.config/polybar/config
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
-; If not, uses default sink
-sink = alsa_output.pci-0000_12_00.3.analog-stereo
+format-volume = <label-volume><bar-volume>
+label-volume = ""
+;label-volume-foreground = ${root.foreground}
 
-use-ui-max = true
-interval = 5
+label-muted = ""
+;label-muted-foreground = #000
 
-format-volume = <ramp-volume> <label-volume>
+bar-volume-width = 12
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-7 = #f5a70a
+bar-volume-foreground-8 = #ff5555
+bar-volume-foreground-9 = #f5a70a
+bar-volume-foreground-10 = #ff5555
+bar-volume-gradient = true
+bar-volume-indicator = │ 
+bar-volume-indicator-font = 2 
+bar-volume-indicator-foreground = #ff 
+bar-volume-fill = ─ 
+bar-volume-fill-font = 2 
+bar-volume-empty = ─ 
+bar-volume-empty-font = 2 
+;bar-volume-empty-foreground = ${colors.foreground-alt}
 
-; Available tags:
-;   <label-muted> (default)
-;   <ramp-volume>
-;   <bar-volume>
-;format-muted = <label-muted>
-
-; Available tokens:
-;   %percentage% (default)
-;   %decibels% (unreleased)
-;label-volume = %percentage%%
-
-; Available tokens:
-;   %percentage% (default)
-;   %decibels% (unreleased)
-label-muted = 🔇 muted
-label-muted-foreground = #666
-
-; Only applies if <ramp-volume> is used
-ramp-volume-0 = 🔈
-ramp-volume-1 = 🔉
-ramp-volume-2 = 🔊
-
-; Right and Middle click (unreleased)
-click-right = pavucontrol &
-; click-middle = 
 
 ;###############
 ;### Spotify ###
@@ -374,7 +404,7 @@ screenchange-reload = true
 pseudo-transparency = true
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
 
 ; vim:ft=dosini

@@ -18,12 +18,10 @@ font-3 = MaterialDesignIcons:size=11;0
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id pa-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id numlockx
-exec --no-startup-id pulseaudio
-
+exec-always /usr/bin/pulseaudio --start
 
 
 # Use pactl to adjust volume in PulseAudio.
@@ -43,6 +41,10 @@ bindsym Print exec flameshot gui
 bindsym $mod+q kill
 # Lock session
 bindsym $alt+Control+l exec dm-tool lock
+# KeePassXC
+bindsym $mod+Shift+M exec keepassxc
+# KeePassXC
+bindsym $mod+$alt+S exec pavucontrol
 
 # change focus
 bindsym $mod+Left focus left
@@ -88,7 +90,7 @@ bindsym $mod+Shift+d exec --no-startup-id rofi -show run -modi run -theme run
 bindsym $mod+Shift+2 exec firefox; workspace 2
 bindsym $mod+Shift+3 exec code; workspace 3
 bindsym $mod+Shift+8 exec rambox && exec pidgin && exec mattermost-desktop ; workspace 8
-bindsym $mod+Shift+9 exec snap run thunderbird; workspace 9
+bindsym $mod+Shift+9 exec thunderbird; workspace 9
 bindsym $mod+Shift+0 exec vboxmanage startvm {4d204db6-3f44-4082-960d-9cac147ee84f}; workspace 10
 bindsym $mod+F11 exec /home/siryu/.config/i3/scripts/monitor_handling.sh &
 
@@ -99,13 +101,13 @@ assign [class="Wine"]       5
 assign [class="install4j-burp-StartBurp"]       6
 assign [class="Spotify"]       7
 assign [class="rambox|mattermost-desktop|Pidgin|pidgin"]      8
-assign [class="Evolution"]      9
+assign [class="Mail|Thunderbird"]      9
 assign [class="VirtualBox Machine"]     0
 
 
 
 
-for_window [class="KeePassXC|Xfce4-taskmanager"] floating enable, resize set 800 600, move position center
+for_window [class="KeePassXC"] floating enable, resize set 800 600, move position center
 
 ##################
 ### Workspaces ###
@@ -191,9 +193,12 @@ exec_always --no-startup-id $HOME/.config/polybar/scripts/spotify/py_spotify_lis
 ### settings for i3-gaps: ###
 #############################
 #############################
+
+
 # Set inner/outer gaps
 gaps inner 5
 gaps outer 5
+
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
