@@ -49,7 +49,6 @@ cd i3conf
 NB: you can pull request if you made some improvements on scripts ;) I'll manage the conf diff !
 
 # TODO 
-- Make a backup of previous conf files before setup
 - Conf file for recurent variables
 - Beautify scripts prompt
 - Error and exeption handeling

@@ -23,6 +23,20 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id numlockx
 exec-always /usr/bin/pulseaudio --start
 
+###########
+# Theming #
+###########
+
+# class                 border  bground text    indicator child_border
+client.focused          #FFB52A #535863 #DFDFDF #2E9EF4   #285577
+client.focused_inactive #2F343F #2F343F #DFDFDF #484E50   #5F676A
+client.unfocused        #2F343F #2F343F #888888 #292D2E   #222222
+client.urgent           #FFB52A #FFB52A #DFDFDF #900000   #900000
+client.placeholder      #000000 #0C0C0C #DFDFDF #000000   #0C0C0C
+
+client.background       #FFFFFF
+
+
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -100,7 +114,7 @@ assign [class="code-oss"]       3
 assign [class="Wine"]       5
 assign [class="install4j-burp-StartBurp"]       6
 assign [class="Spotify"]       7
-assign [class="rambox|mattermost-desktop|Pidgin|pidgin"]      8
+assign [class="rambox|Mattermost|Pidgin|pidgin"]      8
 assign [class="Mail|Thunderbird"]      9
 assign [class="VirtualBox Machine"]     0
 
